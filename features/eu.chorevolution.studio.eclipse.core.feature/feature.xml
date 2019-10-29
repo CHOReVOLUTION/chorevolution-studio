@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2015 The CHOReVOLUTION project
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<feature
+      id="eu.chorevolution.studio.eclipse.core.feature"
+      label="%featureName"
+      version="2.2.0.qualifier"
+      provider-name="%providerName"
+      plugin="eu.chorevolution.studio.eclipse.core">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseUrl">
+      %license
+   </license>
+<!--
+   <url>
+      <update label="%updateSiteName" url="http://nexus.disim.univaq.it/content/sites/chorevolution-studio/"/>
+      <discovery label="%updateSiteName" url="http://nexus.disim.univaq.it/content/sites/chorevolution-studio/"/>
+   </url>
+-->
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="eu.chorevolution.modelingnotations.servicething"/>
+      <import plugin="eu.chorevolution.modelingnotations.security"/>
+      <import plugin="org.eclipse.bpmn2"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.emf.common"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.emf.edit"/>
+      <import plugin="org.eclipse.emf.transaction"/>
+      <import plugin="org.eclipse.ltk.core.refactoring"/>
+      <import plugin="org.eclipse.ltk.ui.refactoring"/>
+      <import plugin="org.eclipse.sirius"/>
+      <import plugin="org.eclipse.sirius.ui"/>
+      <import plugin="org.eclipse.text"/>
+   </requires>
+
+   <plugin
+         id="eu.chorevolution.studio.eclipse.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

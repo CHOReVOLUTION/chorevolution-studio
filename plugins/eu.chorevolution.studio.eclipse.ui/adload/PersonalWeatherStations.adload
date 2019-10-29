@@ -1,0 +1,38 @@
+Get Meteorological Information:0:0:ItemService:0:0
+weatherItemsRequest:1:0:inputMessageTypeRoot:1:0
+weatherItemsRequest:3:0:inputMessageTypeRoot:3:0
+upperRightLat:double:0:urLat:double:0
+upperRightLon:double:0:urLon:double:0
+lowerLeftLat:double:0:llLat:double:0
+lowerLeftLon:double:0:llLon:double:0
+-:-
+weatherItemsResponse:2:0:outputMessageTypeRoot:2:0
+weatherItemsResponse:4:0:outputMessageTypeRoot:4:0
+weatherStations:WeatherType:0:outputDataType:outputDataType:0
+temperature:float:0:ds:string:0~json(outputDataType.ds, "temperature")
+humidity:int:0:ds:string:0~json(outputDataType.ds, "humidity")
+lat:double:0:y:double:0
+lon:double:0:x:double:0
+pressure:float:0:ds:string:0~json(outputDataType.ds, "atmospheric_pressure")
+windSpeed:float:0:ds:string:0~json(outputDataType.ds, "wind_speed")
+rain:float:0:ds:string:0~json(outputDataType.ds, "rain")
+$type:integer:0~"90"
+$s:string:0~""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

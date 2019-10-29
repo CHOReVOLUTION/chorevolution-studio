@@ -1,0 +1,13 @@
+Get Latest News:0:0:NewsService:0:0
+latestNewsRequest:1:0:inputMessageTypeRoot:1:0
+latestNewsRequest:3:0:inputMessageTypeRoot:3:0
+lat:double:0:lat:double:0
+lon:double:0:lon:double:0
+-:-
+latestNewsResponse:2:0:outputMessageTypeRoot:2:0
+latestNewsResponse:4:0:outputMessageTypeRoot:4:0
+events:NewsType:0:objs:objs:0
+name:string:0:t:string:0
+description:string:0:c:string:1
+startDate:dateTime:0:start:string:0~parseDate(outputDataType.objs.start, "'/Date('S'+0100)/'")
+endDate:dateTime:0:end:string:0~parseDate(outputDataType.objs.end, "'/Date('S'+0100)/'")

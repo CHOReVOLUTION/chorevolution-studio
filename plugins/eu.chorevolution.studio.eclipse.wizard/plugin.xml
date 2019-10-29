@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<!--
+Copyright 2015 The CHOReVOLUTION project
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<plugin>
+ 
+ <!-- START wizard -->
+ 
+	<extension point="org.eclipse.ui.newWizards">
+		<category
+			id="eu.chorevolution.studio.eclipse.wizard.category" 
+			name="%wizards.category"> 
+		</category>
+		<wizard
+			category="eu.chorevolution.studio.eclipse.wizard.category"
+			finalPerspective="eu.chorevolution.studio.eclipse.ui.perspective"
+			class="eu.chorevolution.studio.eclipse.wizard.template.chorevolutionsynthesis.ChorevolutionSynthesisProjectWizard"
+			icon="icons/icon.png"
+			id="eu.chorevolution.studio.eclipse.wizard.template.chorevolutionsynthesis"
+			name="%wizards.chorevolutionsynthesisproject.name"
+			project="true">
+			<description>
+				Create a new CHOReVOLUTION Synthesis Project
+			</description>
+		</wizard>
+		
+		<wizard
+			category="eu.chorevolution.studio.eclipse.wizard.category"
+			finalPerspective="eu.chorevolution.studio.eclipse.ui.perspective"
+			class="eu.chorevolution.studio.eclipse.wizard.template.chorevolutionservicething.ChorevolutionServiceThingProjectWizard"
+			icon="icons/icon.png"
+			id="eu.chorevolution.studio.eclipse.wizard.template.chorevolutionservicething"
+			name="%wizards.chorevolutionservicethingproject.name"
+			project="true">
+			<description>
+				Create a new CHOReVOLUTION Service/Thing Project
+			</description>
+		</wizard>
+		
+		<wizard 
+			category="eu.chorevolution.studio.eclipse.wizard.category"
+			class="eu.chorevolution.studio.eclipse.wizard.template.bpmn.BPMN2DiagramWizard" 
+			icon="icons/full/obj16/bpmn2_editor_16.png"
+			id="eu.chorevolution.studio.eclipse.wizard.template.bpmn" 
+			name="%wizards.bpmnmodel.name">
+			<description>
+				Create a new BPMN 2.0 Diagram
+			</description>
+		</wizard>
+	</extension>
+	
+	<extension point="org.eclipse.ui.importWizards">
+		<category
+			id="eu.chorevolution.studio.eclipse.wizard.import.category" 
+			name="%wizards.category"> 
+		</category>
+      <!--<wizard
+            category="eu.chorevolution.studio.eclipse.wizard.import.category"
+            class="org.eclipse.ui.wizards.datatransfer.ExternalProjectImportWizard"
+            id="eu.chorevolution.studio.eclipse.wizard.template.import.chorevolutionservicething"
+            icon="icons/full/etool16/new_template_project_obj.png"
+            name="%wizards.chorevolutionservicethingproject.name"> 
+         <description> 
+            An import wizards that imports code associated with a CHOReVOLUTION Service/Thing Project
+         </description> 
+         <selection class="org.eclipse.core.resources.IResource"/> 
+      </wizard>-->
+      <wizard
+            category="eu.chorevolution.studio.eclipse.wizard.import.category"
+            class="eu.chorevolution.studio.eclipse.wizard.template.importing.ChorevolutionProjectImportWizard"
+            id="eu.chorevolution.studio.eclipse.wizard.template.import.chorevolutionservicething"
+            icon="icons/full/etool16/new_template_project_obj.png"
+            name="%wizards.importing.chorevolutionsroject.name"> 
+         <description> 
+            An import wizards that imports code associated with a CHOReVOLUTION Service/Thing Project
+         </description> 
+         <selection class="org.eclipse.core.resources.IResource"/> 
+      </wizard>
+   </extension>
+ <!-- END Wizards -->
+</plugin>

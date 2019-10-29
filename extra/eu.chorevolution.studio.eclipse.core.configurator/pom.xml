@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2015 The CHOReVOLUTION project
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>eu.chorevolution.studio.eclipse</groupId>
+        <artifactId>eu.chorevolution.studio.eclipse.parent</artifactId>
+        <version>2.2.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>eu.chorevolution.studio.eclipse.core.configurator</artifactId>
+
+    <name>CHOReVOLUTION Studio Core Configurator</name>
+
+    <packaging>pom</packaging>
+
+    <properties>
+        <all.java.dependencies.target-folder>${project.build.directory}/all-java-dependencies</all.java.dependencies.target-folder>
+        <extracted.java.dependencies.target-folder>${project.basedir}/../../plugins/eu.chorevolution.studio.eclipse.core/libs</extracted.java.dependencies.target-folder>
+        <extracted.build.properties.target-folder>${project.basedir}/../../plugins/eu.chorevolution.studio.eclipse.core</extracted.build.properties.target-folder>
+        <extracted.manifest.mf.target-folder>${project.basedir}/../../plugins/eu.chorevolution.studio.eclipse.core/META-INF</extracted.manifest.mf.target-folder>
+
+		<eu.chorevolution.modelingnotations.adapter.version>2.2.0-SNAPSHOT</eu.chorevolution.modelingnotations.adapter.version>
+        <choreographyarchitecture-generator.version>2.2.0-SNAPSHOT</choreographyarchitecture-generator.version>
+        <choreographyspecification-generator.version>2.2.0-SNAPSHOT</choreographyspecification-generator.version>
+        <chorspec.version>1.0.0</chorspec.version>
+        <commons-codec.version>1.10</commons-codec.version>
+        <commons-collections.version>4.1</commons-collections.version>
+        <commons-compress.version>1.12</commons-compress.version>
+        <commons-io.version>2.4</commons-io.version>
+        <commons-lang.version>3.4</commons-lang.version>
+        <cxf.version>3.1.11</cxf.version>
+        <cxf-search.version>3.1.11</cxf-search.version>
+        <jackson-annotations.version>2.8.0</jackson-annotations.version>
+        <jackson.version>2.8.8</jackson.version>
+        <javax.annotation-api.version>1.2</javax.annotation-api.version>
+        <javax.ws.rs-api.version>2.0.1</javax.ws.rs-api.version>
+        <jaxb.version>2.2.11</jaxb.version>
+        <jersey.version>1.9</jersey.version>
+        <joda-time.version>2.7</joda-time.version>
+        <jlibs.version>2.2.1</jlibs.version>
+        <log4j-api.version>2.8.2</log4j-api.version>
+		<slf4j-ext.version>1.7.12</slf4j-ext.version>
+        <slf4j-log4j12.version>1.7.12</slf4j-log4j12.version>
+        <stax2-api.version>3.1.4</stax2-api.version>
+        <syncope.version>2.0.3</syncope.version>
+        <syncope-ext-choreography.version>2.1.0</syncope-ext-choreography.version>
+        <synthesisprocessor-rest.version>2.2.0-SNAPSHOT</synthesisprocessor-rest.version>
+        <validation-api.version>1.1.0.Final</validation-api.version>
+        <woodstox-core-asl.version>4.4.1</woodstox-core-asl.version>
+        <wsdl4j.version>1.6.3</wsdl4j.version>
+        <xml-apis.version>1.4.01</xml-apis.version>
+        <xmlschema-core.version>2.2.1</xmlschema-core.version>
+        <xerces-impl.version>2.11.0</xerces-impl.version>
+        <commons-jexl3.version>3.1</commons-jexl3.version>
+
+		<eu.chorevolution.modelingnotations.adapter>eu.chorevolution.modelingnotations.adapter-${eu.chorevolution.modelingnotations.adapter.version}.jar</eu.chorevolution.modelingnotations.adapter>
+		<choreographyarchitecture-generator>choreographyarchitecture-generator-${choreographyarchitecture-generator.version}.jar</choreographyarchitecture-generator>
+        <choreographyspecification-generator>choreographyspecification-generator-${choreographyspecification-generator.version}.jar</choreographyspecification-generator>
+        <chorspec>chorspec-${chorspec.version}.jar</chorspec>
+        <commons-codec>commons-codec-${commons-codec.version}.jar</commons-codec>
+        <commons-collections4>commons-collections4-${commons-collections.version}.jar</commons-collections4>
+        <commons-compress>commons-compress-${commons-compress.version}.jar</commons-compress>
+        <commons-io>commons-io-${commons-io.version}.jar</commons-io>
+        <commons-lang3>commons-lang3-${commons-lang.version}.jar</commons-lang3>
+        <cxf-core>cxf-core-${cxf.version}.jar</cxf-core>
+        <cxf-rt-frontend-jaxrs>cxf-rt-frontend-jaxrs-${cxf.version}.jar</cxf-rt-frontend-jaxrs>
+        <cxf-rt-rs-client>cxf-rt-rs-client-${cxf.version}.jar</cxf-rt-rs-client>
+        <cxf-rt-rs-extension-search>cxf-rt-rs-extension-search-${cxf-search.version}.jar</cxf-rt-rs-extension-search>
+        <cxf-rt-transports-http>cxf-rt-transports-http-${cxf.version}.jar</cxf-rt-transports-http>
+        <jackson-annotations>jackson-annotations-${jackson-annotations.version}.jar</jackson-annotations>
+        <jackson-core>jackson-core-${jackson.version}.jar</jackson-core>
+        <jackson-databind>jackson-databind-${jackson.version}.jar</jackson-databind>
+        <jackson-datatype-joda>jackson-datatype-joda-${jackson.version}.jar</jackson-datatype-joda>
+        <jackson-jaxrs-base>jackson-jaxrs-base-${jackson.version}.jar</jackson-jaxrs-base>
+        <jackson-jaxrs-json-provider>jackson-jaxrs-json-provider-${jackson.version}.jar</jackson-jaxrs-json-provider>
+        <jackson-module-jaxb-annotations>jackson-module-jaxb-annotations-${jackson.version}.jar</jackson-module-jaxb-annotations>
+        <javax.annotation-api>javax.annotation-api-${javax.annotation-api.version}.jar</javax.annotation-api>
+        <javax.ws.rs-api>javax.ws.rs-api-${javax.ws.rs-api.version}.jar</javax.ws.rs-api>
+        <jaxb-core>jaxb-core-${jaxb.version}.jar</jaxb-core>
+        <jaxb-impl>jaxb-impl-${jaxb.version}.jar</jaxb-impl>
+		<jersey-client>jersey-client-${jersey.version}.jar</jersey-client>
+        <jersey-core>jersey-core-${jersey.version}.jar</jersey-core>
+        <joda-time>joda-time-${joda-time.version}.jar</joda-time>
+        <jlibs-core>jlibs-core-${jlibs.version}.jar</jlibs-core>
+        <jlibs-xml>jlibs-xml-${jlibs.version}.jar</jlibs-xml>
+        <jlibs-xsd>jlibs-xsd-${jlibs.version}.jar</jlibs-xsd>
+        <jlibs-visitor>jlibs-visitor-${jlibs.version}.jar</jlibs-visitor>
+        <log4j-api>log4j-api-${log4j-api.version}.jar</log4j-api>
+		<slf4j-ext>slf4j-ext-${slf4j-ext.version}.jar</slf4j-ext>
+        <slf4j-log4j12>slf4j-log4j12-${slf4j-log4j12.version}.jar</slf4j-log4j12>
+        <stax2-api>stax2-api-${stax2-api.version}.jar</stax2-api>
+        <syncope-client-lib>syncope-client-lib-${syncope.version}.jar</syncope-client-lib>
+        <syncope-common-lib>syncope-common-lib-${syncope.version}.jar</syncope-common-lib>
+        <syncope-common-rest-api>syncope-common-rest-api-${syncope.version}.jar</syncope-common-rest-api>
+        <syncope-ext-common>common-${syncope-ext-choreography.version}.jar</syncope-ext-common>
+        <syncope-ext-choreography-common-lib>syncope-ext-choreography-common-lib-${syncope-ext-choreography.version}.jar</syncope-ext-choreography-common-lib>
+        <syncope-ext-choreography-rest-api>syncope-ext-choreography-rest-api-${syncope-ext-choreography.version}.jar</syncope-ext-choreography-rest-api>
+        <synthesisprocessor-rest>synthesisprocessor-rest-${synthesisprocessor-rest.version}-api.jar</synthesisprocessor-rest>
+        <validation-api>validation-api-${validation-api.version}.jar</validation-api>
+        <woodstox-core-asl>woodstox-core-asl-${woodstox-core-asl.version}.jar</woodstox-core-asl>
+        <wsdl4j>wsdl4j-${wsdl4j.version}.jar</wsdl4j>
+        <xml-apis>xml-apis-${xml-apis.version}.jar</xml-apis>
+        <xmlschema-core>xmlschema-core-${xmlschema-core.version}.jar</xmlschema-core>
+        <xerces-impl>xercesImpl-${xerces-impl.version}.jar</xerces-impl>
+        <commons-jexl3>commons-jexl3-${commons-jexl3.version}.jar</commons-jexl3>
+        
+        <!-- properties for build.properties file -->
+        <sources.dir>src/</sources.dir>
+        <bin.includes>META-INF/,\
+            plugin.xml,\
+            plugin.properties,\
+            feature_image.png,\
+            about.properties,\
+            about.ini,\
+            .,\
+            libs/${choreographyarchitecture-generator},\
+            libs/${choreographyspecification-generator},\
+            libs/${chorspec},\
+            libs/${commons-codec},\
+            libs/${commons-collections4},\
+            libs/${commons-compress},\
+            libs/${commons-io},\
+            libs/${commons-lang3},\
+            libs/${cxf-core},\
+            libs/${cxf-rt-frontend-jaxrs},\
+            libs/${cxf-rt-rs-client},\
+            libs/${cxf-rt-rs-extension-search},\
+            libs/${cxf-rt-transports-http},\
+            libs/${jackson-annotations},\
+            libs/${jackson-core},\
+            libs/${jackson-databind},\
+            libs/${jackson-datatype-joda},\
+            libs/${jackson-jaxrs-base},\
+            libs/${jackson-jaxrs-json-provider},\
+            libs/${jackson-module-jaxb-annotations},\
+            libs/${javax.annotation-api},\
+            libs/${javax.ws.rs-api},\
+            libs/${jaxb-core},\
+            libs/${jaxb-impl},\
+            libs/${jersey-client},\
+            libs/${jersey-core},\
+            libs/${jlibs-core},\
+            libs/${jlibs-xml},\
+            libs/${jlibs-xsd},\
+            libs/${jlibs-visitor},\
+            libs/${joda-time},\
+            libs/${log4j-api},\
+            libs/${slf4j-ext},\
+			libs/${eu.chorevolution.modelingnotations.adapter},\
+            libs/${slf4j-log4j12},\
+            libs/${stax2-api},\
+            libs/${syncope-client-lib},\
+            libs/${syncope-common-lib},\
+            libs/${syncope-common-rest-api},\
+            libs/${syncope-ext-common},\
+            libs/${syncope-ext-choreography-common-lib},\
+            libs/${syncope-ext-choreography-rest-api},\
+            libs/${synthesisprocessor-rest},\
+            libs/${validation-api},\
+            libs/${woodstox-core-asl},\
+            libs/${wsdl4j},\
+            libs/${xml-apis},\
+            libs/${xmlschema-core},\
+            libs/${xerces-impl},\
+            libs/${commons-jexl3}
+
+# libs/${authzforce-ce-xacml-model},\
+# libs/${authzforce-ce-xmlns-model},\  
+        </bin.includes>
+        
+    </properties>
+    
+    <!-- chorevolution repository -->
+    <repositories>
+        <repository>
+         <id>ow2-snapshots</id>
+         <url>http://repository.ow2.org/nexus/content/repositories/snapshots/</url>
+         <releases>
+            <enabled>false</enabled>
+         </releases>
+         <snapshots>
+            <enabled>true</enabled>
+         </snapshots>
+      </repository>
+      <repository>
+         <id>ow2-releases</id>
+         <url>http://repository.ow2.org/nexus/content/repositories/releases/</url>
+         <releases>
+            <enabled>true</enabled>
+         </releases>
+         <snapshots>
+            <enabled>false</enabled>
+         </snapshots>
+      </repository>
+        <repository>
+         <id>apache.snapshots</id>
+         <name>Apache Snapshot Repository</name>
+         <url>http://repository.apache.org/snapshots</url>
+         <releases>
+            <enabled>false</enabled>
+         </releases>
+      </repository>
+    </repositories>
+
+    <!-- this dependencies will be copyied in the plugin plugins/eu.chorevolution.studio.eclipse.core -->
+    <dependencies>
+	    <dependency>
+            <groupId>eu.chorevolution.modelingnotations</groupId>
+            <artifactId>eu.chorevolution.modelingnotations.adapter</artifactId>
+            <version>${eu.chorevolution.modelingnotations.adapter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.chorevolution.transformations.generativeapproach</groupId>
+            <artifactId>choreographyarchitecture-generator</artifactId>
+            <version>${choreographyarchitecture-generator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.chorevolution.transformations.generativeapproach</groupId>
+            <artifactId>choreographyspecification-generator</artifactId>
+            <version>${choreographyspecification-generator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.chorevolution.synthesisprocessor</groupId>
+            <artifactId>synthesisprocessor-rest</artifactId>
+            <version>${synthesisprocessor-rest.version}</version>
+            <classifier>api</classifier>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.syncope.client</groupId>
+            <artifactId>syncope-client-lib</artifactId>
+            <version>${syncope.version}</version>
+        </dependency>
+      <dependency>
+         <groupId>eu.chorevolution.idm.ext.choreography</groupId>
+         <artifactId>syncope-ext-choreography-rest-api</artifactId>
+         <version>${syncope-ext-choreography.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.commons</groupId>
+         <artifactId>commons-jexl3</artifactId>
+         <version>${commons-jexl3.version}</version>
+      </dependency>     
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- remove the libs/ folder in the plugin: plugins/eu.chorevolution.studio.eclipse.core -->
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${extracted.java.dependencies.target-folder}</directory>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <!-- get java dependencies specified in <dependencies> ... </dependencies> 
+                and they are copied in the plugin: plugins/eu.chorevolution.studio.eclipse.core -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.10</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                       <phase>clean</phase> 
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${all.java.dependencies.target-folder}</outputDirectory>
+                            <overWriteReleases>true</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                            <stripVersion>false</stripVersion>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>copy.java-dependencies</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${extracted.java.dependencies.target-folder}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${all.java.dependencies.target-folder}</directory>
+                                    <includes>
+                                    <!--    <include>${authzforce-ce-xacml-model}</include>
+                                        <include>${authzforce-ce-xmlns-model}</include> -->
+										<include>${eu.chorevolution.modelingnotations.adapter}</include>
+                                        <include>${choreographyarchitecture-generator}</include>
+                                        <include>${choreographyspecification-generator}</include>
+                                        <include>${chorspec}</include>
+                                        <include>${commons-codec}</include>
+                                        <include>${commons-collections4}</include>
+                                        <include>${commons-compress}</include>
+                                        <include>${commons-io}</include>
+                                        <include>${commons-lang3}</include>
+                                        <include>${cxf-core}</include>
+                                        <include>${cxf-rt-frontend-jaxrs}</include>
+                                        <include>${cxf-rt-rs-client}</include>
+                                        <include>${cxf-rt-rs-extension-search}</include>
+                                        <include>${cxf-rt-transports-http}</include>
+                                        <include>${jackson-annotations}</include>
+                                        <include>${jackson-core}</include>
+                                        <include>${jackson-databind}</include>
+                                        <include>${jackson-datatype-joda}</include>
+                                        <include>${jackson-jaxrs-base}</include>
+                                        <include>${jackson-jaxrs-json-provider}</include>
+                                        <include>${jackson-module-jaxb-annotations}</include>
+                                        <include>${javax.annotation-api}</include>
+                                        <include>${javax.ws.rs-api}</include>
+                                        <include>${jaxb-core}</include>
+                                        <include>${jaxb-impl}</include>
+                                        <include>${jersey-client}</include>
+                                        <include>${jersey-core}</include>
+                                        <include>${jlibs-core}</include>
+                                        <include>${jlibs-xml}</include>
+                                        <include>${jlibs-xsd}</include>
+                                        <include>${jlibs-visitor}</include>
+                                        <include>${joda-time}</include>
+                                        <include>${log4j-api}</include>
+                                        <include>${slf4j-ext}</include>
+                                        <include>${slf4j-log4j12}</include>
+                                        <include>${stax2-api}</include>
+                                        <include>${syncope-client-lib}</include>
+                                        <include>${syncope-common-lib}</include>
+                                        <include>${syncope-common-rest-api}</include>
+                                        <include>${syncope-ext-common}</include>
+                                        <include>${syncope-ext-choreography-common-lib}</include>
+                                        <include>${syncope-ext-choreography-rest-api}</include>
+                                        <include>${synthesisprocessor-rest}</include>
+                                        <include>${validation-api}</include>
+                                        <include>${woodstox-core-asl}</include>
+                                        <include>${wsdl4j}</include>
+                                        <include>${xml-apis}</include>
+                                        <include>${xmlschema-core}</include>
+                                        <include>${xerces-impl}</include>
+                                        <include>${commons-jexl3}</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    
+                    <execution>
+                        <id>copy-build.properties</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${extracted.build.properties.target-folder}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <filtering>true</filtering>
+                                    <directory>src/main/resources</directory>
+                                    <includes>
+                                        <include>build.properties</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

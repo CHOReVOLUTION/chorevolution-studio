@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/eu.chorevolution.studio.eclipse.feature_2.2.0.qualifier.jar" id="eu.chorevolution.studio.eclipse.feature" version="2.2.0.qualifier">
+      <category name="eu.chorevolution.studio.eclipse.category"/>
+   </feature>
+   <category-def name="eu.chorevolution.studio.eclipse.category" label="CHOReVOLUTION Studio">
+      <description>
+         CHOReVOLUTION Studio
+      </description>
+   </category-def>
+   <!--
+   <repository-reference location="http://nexus.disim.univaq.it/content/sites/chorevolution-studio/" enabled="true" />
+   -->
+</site>

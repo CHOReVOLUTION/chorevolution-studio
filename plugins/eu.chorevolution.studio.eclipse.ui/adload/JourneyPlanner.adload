@@ -1,0 +1,32 @@
+
+
+Get Trips Information:0:0:journeyPlanningService:0:0
+tripsRequest:1:0:inputMessageTypeRoot:1:0
+tripsRequest:3:0:inputMessageTypeRoot:3:0
+fromLat:double:0:fromLat:double:0
+fromLon:double:0:fromLon:double:0
+toLat:double:0:toLat:double:0
+toLon:double:0:toLon:double:0
+transportMode:string:0:modes:integer:0~valueof(transportMode, "Walk":"1", "Bicycle":"2", "PublicTransport":"4", "Car":"8")
+-:-
+tripsResponse:2:0:outputMessageTypeRoot:2:0
+tripsResponse:4:0:outputMessageTypeRoot:1:0
+from:string:0:n:string:0
+to:string:0:n:string:1
+trips:TripsType:0:ts:ts:0
+distance:int:0:d:integer:0
+duration:int:0:du:integer:0
+segments:SegmentType:0:segs:segs:0
+distance:int:1:d:integer:1
+duration:int:1:du:integer:1
+transportType:string:0:t:integer:1~valueof(outputDataType.ts.segs.t, "1":"Walk", "4":"Car", "8":"Bicycle", "2":"PublicTransport", "16":"PublicTransport", "32":"PublicTransport", "128":"PublicTransport")
+manouevres:string:0:f:string:1~"From " + outputDataType.ts.segs.ps.f + " " + valueof(outputDataType.ts.segs.ps.m, "0":"Straight", "1":"Right", "2":"Left", "4":"Slight Right", "5":"Slight Left", "16":"Sharp Right", "32":"Sharp Left", "64":"Keep Left", "128":"Keep Right") + " for " + outputDataType.ts.segs.ps.d + " meters"
+manouevres:string:0:m:integer:1
+manouevres:string:0:d:integer:2
+
+
+dropInNode:string:0:s:string:1
+dropOffNode:string:0:e:string:1
+line:string:0:l:string:0
+vehicleDirection:string:0:d:string:3
+

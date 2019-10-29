@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<!--
+Copyright 2015 The CHOReVOLUTION project
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<plugin>
+   <extension
+         point="org.eclipse.ui.ide.projectNatureImages">
+      <image
+            natureId="eu.chorevolution.studio.eclipse.core.chorevolutionsynthesisnature"
+            icon="icons/full/ovr16/chorevolution_ovr.gif"
+            id="eu.chorevolution.studio.eclipse.ui.chorevolutionnatureimage"/>
+      <image
+            natureId="eu.chorevolution.studio.eclipse.core.chorevolutionservicethingnature"
+            icon="icons/full/ovr16/chorevolution_ovr.gif"
+            id="eu.chorevolution.studio.eclipse.ui.chorevolutionnatureimage"/>
+   </extension>
+   
+   <!-- START Chorevolution property and preference Pages -->
+   <!-- Workspace Preference -->
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            id="eu.chorevolution.studio.eclipse.ui.commonsPreferencePage"
+            name="%projectPropertyCategory"
+            class="eu.chorevolution.studio.eclipse.ui.preferences.pages.CommonsPropertyAndPreferencePage">
+      </page>
+      
+      <page id="eu.chorevolution.studio.eclipse.ui.sourceModelsPreferencePage"
+ 			name="%structureProjectPropertyPage"
+ 			category="eu.chorevolution.studio.eclipse.ui.commonsPreferencePage"
+    		class="eu.chorevolution.studio.eclipse.ui.preferences.pages.SourceModelsPropertyAndPreferencePage">
+		      <keywordReference
+		            id="eu.chorevolution.studio.eclipse.ui.keywords">
+		      </keywordReference>
+   		</page>
+   		
+   		<page id="eu.chorevolution.studio.eclipse.ui.servicesURIPreferencePage"
+ 			name="%servicesURIPropertyPage"
+ 			category="eu.chorevolution.studio.eclipse.ui.commonsPreferencePage"
+    		class="eu.chorevolution.studio.eclipse.ui.preferences.pages.ServicesURIPropertyAndPreferencePage">
+		      <keywordReference
+		            id="eu.chorevolution.studio.eclipse.ui.keywords">
+		      </keywordReference>
+   		</page>
+   		
+   </extension>
+   
+   
+   
+   <!-- Project Property commons all chorevolution projects-->
+   <extension
+         point="org.eclipse.ui.propertyPages" >
+      <page
+            id="eu.chorevolution.studio.eclipse.ui.commonsPropertyPage"
+            name="%projectPropertyCategory"
+            class="eu.chorevolution.studio.eclipse.ui.preferences.pages.CommonsPropertyAndPreferencePage">
+           <enabledWhen>
+           <and>
+          	  <instanceof value="org.eclipse.core.resources.IProject"/>
+	           <or>
+	      	     	<test property="org.eclipse.core.resources.projectNature" value="eu.chorevolution.studio.eclipse.core.chorevolutionsynthesisnature"/>
+	         		<test property="org.eclipse.core.resources.projectNature" value="eu.chorevolution.studio.eclipse.core.chorevolutionservicethingnature"/>
+	           </or>
+	       </and>
+           </enabledWhen>
+      </page>
+      <page
+            id="eu.chorevolution.studio.eclipse.ui.sourceModelsPropertyPage"
+            name="%structureProjectPropertyPage"
+ 			category="eu.chorevolution.studio.eclipse.ui.commonsPropertyPage"
+            class="eu.chorevolution.studio.eclipse.ui.preferences.pages.SourceModelsPropertyAndPreferencePage">
+            <enabledWhen>
+            <and>
+          	  <instanceof value="org.eclipse.core.resources.IProject"/>
+	           <or>
+	           	<test property="org.eclipse.core.resources.projectNature" value="eu.chorevolution.studio.eclipse.core.chorevolutionsynthesisnature"/>
+	         	<test property="org.eclipse.core.resources.projectNature" value="eu.chorevolution.studio.eclipse.core.chorevolutionservicethingnature"/>
+	           </or>
+	       </and>
+           </enabledWhen>
+         <keywordReference
+               id="eu.chorevolution.studio.eclipse.ui.keywords">
+         </keywordReference>
+      </page>
+      <page
+            id="eu.chorevolution.studio.eclipse.ui.servicesURIProjectPropertyPage"
+            name="%servicesURIPropertyPage"
+ 			category="eu.chorevolution.studio.eclipse.ui.commonsPropertyPage"
+            class="eu.chorevolution.studio.eclipse.ui.preferences.pages.ServicesURIPropertyAndPreferencePage">
+           <enabledWhen>
+	        <and>
+          	  <instanceof value="org.eclipse.core.resources.IProject"/>
+	           <or>
+	      	     	<test property="org.eclipse.core.resources.projectNature" value="eu.chorevolution.studio.eclipse.core.chorevolutionsynthesisnature"/>
+	         		<test property="org.eclipse.core.resources.projectNature" value="eu.chorevolution.studio.eclipse.core.chorevolutionservicethingnature"/>
+	           </or>
+	       </and>
+           </enabledWhen>
+         <keywordReference
+               id="eu.chorevolution.studio.eclipse.ui.keywords">
+         </keywordReference>
+      </page>
+      <page
+            id="eu.chorevolution.studio.eclipse.ui.synthesisProcessorPreferencePage"
+            name="%synthesisProcessorPreferencePage"
+ 			category="eu.chorevolution.studio.eclipse.ui.commonsPropertyPage"
+            class="eu.chorevolution.studio.eclipse.ui.preferences.pages.SynthesisProcessorPreferencePage">
+           <enabledWhen>
+	        <and>
+          	  <instanceof value="org.eclipse.core.resources.IProject"/>
+	           <and>
+	      	     	<test property="org.eclipse.core.resources.projectNature" value="eu.chorevolution.studio.eclipse.core.chorevolutionsynthesisnature"/>
+	           </and>
+	       </and>
+           </enabledWhen>
+         <keywordReference
+               id="eu.chorevolution.studio.eclipse.ui.keywords">
+         </keywordReference>
+      </page>      
+      
+   </extension>
+   
+    
+   <!-- keywords used to search specific preference -->
+     <extension point="org.eclipse.ui.keywords">
+         <keyword id="eu.chorevolution.studio.eclipse.ui.keywords"
+            label="%preferenceKeywords.label"/>
+    </extension>
+
+   <!-- END Chorevolution property and preference Pages -->
+   
+   
+   <!-- START Chorevolution Perspective-->
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="eu.chorevolution.studio.eclipse.ui.perspective.ChorevolutionPerspective"
+            icon="icons/full/obj16/chorevolution_perspective.gif"
+            id="eu.chorevolution.studio.eclipse.ui.perspective"
+            name="%perspective.label">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension targetID="eu.chorevolution.studio.eclipse.ui.perspective">
+			<actionSet id="org.eclipse.debug.ui.launchActionSet" />
+			<actionSet id="org.eclipse.debug.ui.breakpointActionSet" />
+      </perspectiveExtension>
+   </extension>
+   <!-- END Chorevolution Perspective-->
+   
+   
+   <!-- STRART Chorevolution org.eclipse.ui.menus-->
+   <!-- Definitions <adapt type="org.eclipse.core.resources.IProject">  <adapt type="org.eclipse.core.resources.IFile">-->
+   <extension point="org.eclipse.core.expressions.definitions">
+      <definition id="eu.chorevolution.studio.eclipse.ui.expressions.definitions.nonChorevolutionProject">
+         <iterate ifEmpty="false">
+         	<adapt type="org.eclipse.core.resources.IProject">
+         	<and>
+         		<not><test property="org.eclipse.core.resources.projectNature" value="eu.chorevolution.studio.eclipse.core.chorevolutionsynthesisnature"/></not>
+         		<not><test property="org.eclipse.core.resources.projectNature" value="eu.chorevolution.studio.eclipse.core.chorevolutionservicethingnature"/></not>         				
+         	</and>
+         	</adapt>
+         </iterate>
+      </definition>
+      <definition id="eu.chorevolution.studio.eclipse.ui.expressions.definitions.chorevolutionSyntesisProject">
+         <iterate ifEmpty="false">
+			<adapt type="org.eclipse.core.resources.IProject">
+         		<test property="org.eclipse.core.resources.projectNature" value="eu.chorevolution.studio.eclipse.core.chorevolutionsynthesisnature"/>         				
+         	</adapt>
+         </iterate>
+      </definition>
+      <definition id="eu.chorevolution.studio.eclipse.ui.expressions.definitions.chorevolutionServiceThingProject">
+         <iterate ifEmpty="false">
+			<adapt type="org.eclipse.core.resources.IProject">
+         		<test property="org.eclipse.core.resources.projectNature" value="eu.chorevolution.studio.eclipse.core.chorevolutionservicethingnature"/>         				
+         	</adapt>
+         </iterate>
+      </definition>
+      <definition id="eu.chorevolution.studio.eclipse.ui.expressions.definitions.bpmnFile">
+         <iterate ifEmpty="false">
+         	<or>
+				<test property="org.eclipse.core.resources.name" value="*.bpmn"/>
+            	<test property="org.eclipse.core.resources.name" value="*.bpmn2"/>
+           	</or>
+           	<test property="org.eclipse.core.resources.projectNature" value="eu.chorevolution.studio.eclipse.core.chorevolutionsynthesisnature"/>         			
+          </iterate>
+      </definition>
+      <definition id="eu.chorevolution.studio.eclipse.ui.expressions.definitions.adapterFile">
+         <iterate operator="and" ifEmpty="false">
+            <test property="org.eclipse.core.resources.name" value="*.adapter"/>
+         	<test property="org.eclipse.core.resources.projectNature" value="eu.chorevolution.studio.eclipse.core.chorevolutionsynthesisnature"/>         				
+         </iterate>
+      </definition>
+      <definition id="eu.chorevolution.studio.eclipse.ui.expressions.definitions.servicesFolder">
+         <iterate operator="and" ifEmpty="false">
+            <test property="org.eclipse.core.resources.name" value="services"/>
+         	<test property="org.eclipse.core.resources.projectNature" value="eu.chorevolution.studio.eclipse.core.chorevolutionsynthesisnature"/>         				
+         </iterate>
+      </definition>
+      <definition id="eu.chorevolution.studio.eclipse.ui.expressions.definitions.chorarchFile">
+         <iterate operator="and" ifEmpty="false">
+            <test property="org.eclipse.core.resources.name" value="*.chorarch"/>
+         	<test property="org.eclipse.core.resources.projectNature" value="eu.chorevolution.studio.eclipse.core.chorevolutionsynthesisnature"/>         				
+         </iterate>
+      </definition>
+      <definition id="eu.chorevolution.studio.eclipse.ui.expressions.definitions.choreospecFile">
+         <iterate operator="and" ifEmpty="false">
+            <test property="org.eclipse.core.resources.path" value="*/Choreography Deployment/*"/>
+            <test property="org.eclipse.core.resources.name" value="*.xml"/>
+         	<test property="org.eclipse.core.resources.projectNature" value="eu.chorevolution.studio.eclipse.core.chorevolutionsynthesisnature"/>         				
+         </iterate>
+      </definition>
+      <definition id="eu.chorevolution.studio.eclipse.ui.expressions.definitions.choreospecFileUploaded">
+         <iterate operator="and" ifEmpty="false">
+            <test property="org.eclipse.core.resources.path" value="*/Choreography Deployment/*"/>
+            <test property="org.eclipse.core.resources.name" value="*.xml"/>
+         	<test property="org.eclipse.core.resources.projectNature" value="eu.chorevolution.studio.eclipse.core.chorevolutionsynthesisnature"/>         				
+         </iterate>
+      </definition>      
+      <definition id="eu.chorevolution.studio.eclipse.ui.expressions.definitions.servicethingFile">
+         <iterate operator="and" ifEmpty="false">
+            <test property="org.eclipse.core.resources.name" value="*.servicething"/>
+         	<test property="org.eclipse.core.resources.projectNature" value="eu.chorevolution.studio.eclipse.core.chorevolutionservicethingnature"/>         				
+         </iterate>
+      </definition>
+   </extension>
+   
+   <!-- Commands -->
+   <extension
+   		point="org.eclipse.ui.commands">
+        <command
+			id="eu.chorevolution.studio.eclipse.ui.commands.addChorevolutionSyntesisNature"
+			name="%command.addChorevolutionSyntesisNature.label">
+		</command>
+		<command
+			id="eu.chorevolution.studio.eclipse.ui.commands.removeChorevolutionSyntesisNature"
+			name="%command.removeChorevolutionSyntesisNature.label">
+		</command>
+		<command
+			id="eu.chorevolution.studio.eclipse.ui.commands.downloadChoreographyFromSyncope"
+			name="%command.downloadChoreographyFromSyncope.label">
+		</command>
+		 <command
+			id="eu.chorevolution.studio.eclipse.ui.commands.addChorevolutionServiceThingNature"
+			name="%command.addChorevolutionServiceThingNature.label">
+		</command>
+		<command
+			id="eu.chorevolution.studio.eclipse.ui.commands.removeChorevolutionServiceThingNature"
+			name="%command.removeChorevolutionServiceThingNature.label">
+		</command>
+		<command
+			id="eu.chorevolution.studio.eclipse.ui.commands.validateBpmnChoreographyDiagram"
+			name="%command.validateBpmnChoreographyDiagram.label">
+		</command>
+		<command
+			id="eu.chorevolution.studio.eclipse.ui.commands.executeSynthesisProcessor"
+			name="%command.executeSynthesisProcessor.label">
+		</command>
+		<command
+			id="eu.chorevolution.studio.eclipse.ui.commands.generateAdapter"
+			name="%command.generateAdapter.label">
+		</command>
+		<command
+			id="eu.chorevolution.studio.eclipse.ui.commands.generateChoreographySpecificationFromChorarch"
+			name="%command.generateChoreographySpecificationFromChorarch.label">
+		</command>
+		<command
+			id="eu.chorevolution.studio.eclipse.ui.commands.deployAndEnactChoreographyDeploymentDescriptor"
+			name="%command.deployAndEnactChoreographyDeploymentDescriptor.label">
+		</command>
+		<!--
+		<command
+			id="eu.chorevolution.studio.eclipse.ui.commands.enactChoreographyDeploymentDescriptor"
+			name="%command.enactChoreographyDeploymentDescriptor.label">
+		</command>		
+		<command
+			id="eu.chorevolution.studio.eclipse.ui.commands.updateChoreographyDeploymentDescriptor"
+			name="%command.updateChoreographyDeploymentDescriptor.label">
+		</command>
+		-->			
+		<command
+			id="eu.chorevolution.studio.eclipse.ui.commands.uploadServiceIntoServiceInventory"
+			name="%command.uploadServiceIntoServiceInventory.label">
+		</command>
+	</extension>   
+	
+	<!-- Handlers -->
+	<extension point="org.eclipse.ui.handlers">
+		<handler
+			class="eu.chorevolution.studio.eclipse.ui.handlers.AddRemoveChorevolutionSynthesisNature"
+			commandId="eu.chorevolution.studio.eclipse.ui.commands.addChorevolutionSyntesisNature">
+		</handler>
+		<handler
+			class="eu.chorevolution.studio.eclipse.ui.handlers.AddRemoveChorevolutionSynthesisNature"
+			commandId="eu.chorevolution.studio.eclipse.ui.commands.removeChorevolutionSyntesisNature">
+		</handler>
+		<handler
+			class="eu.chorevolution.studio.eclipse.ui.handlers.DownloadChoreographyFromSyncope"
+			commandId="eu.chorevolution.studio.eclipse.ui.commands.downloadChoreographyFromSyncope">
+		</handler>
+		<handler
+			class="eu.chorevolution.studio.eclipse.ui.handlers.AddRemoveChorevolutionServiceThingNature"
+			commandId="eu.chorevolution.studio.eclipse.ui.commands.addChorevolutionServiceThingNature">
+		</handler>
+		<handler
+			class="eu.chorevolution.studio.eclipse.ui.handlers.AddRemoveChorevolutionServiceThingNature"
+			commandId="eu.chorevolution.studio.eclipse.ui.commands.removeChorevolutionServiceThingNature">
+		</handler>
+		
+		<handler
+			class="eu.chorevolution.studio.eclipse.ui.handlers.ValidateBpmnChoreographyDiagram"
+			commandId="eu.chorevolution.studio.eclipse.ui.commands.validateBpmnChoreographyDiagram">
+		</handler>
+		
+		<handler
+			class="eu.chorevolution.studio.eclipse.ui.handlers.ChorevolutionSynthesisProcessor"
+			commandId="eu.chorevolution.studio.eclipse.ui.commands.executeSynthesisProcessor">
+		</handler>
+		<handler
+			class="eu.chorevolution.studio.eclipse.ui.handlers.GenerateAdapter"
+			commandId="eu.chorevolution.studio.eclipse.ui.commands.generateAdapter">
+		</handler>
+		<handler
+			class="eu.chorevolution.studio.eclipse.ui.handlers.GenerateChoreographyDeploymentDescriptor"
+			commandId="eu.chorevolution.studio.eclipse.ui.commands.generateChoreographySpecificationFromChorarch">
+		</handler>
+		<handler
+			class="eu.chorevolution.studio.eclipse.ui.handlers.DeployAndEnactChoreographyDeploymentDescriptor"
+			commandId="eu.chorevolution.studio.eclipse.ui.commands.deployAndEnactChoreographyDeploymentDescriptor">
+		</handler>
+		<!--
+		<handler
+			class="eu.chorevolution.studio.eclipse.ui.handlers.EnactChoreographyDeploymentDescriptor"
+			commandId="eu.chorevolution.studio.eclipse.ui.commands.enactChoreographyDeploymentDescriptor">
+		</handler>		
+		<handler
+			class="eu.chorevolution.studio.eclipse.ui.handlers.UpdateChoreographyDeploymentDescriptor"
+			commandId="eu.chorevolution.studio.eclipse.ui.commands.updateChoreographyDeploymentDescriptor">
+		</handler>
+		-->			
+		<handler
+			class="eu.chorevolution.studio.eclipse.ui.handlers.UploadServiceIntoServiceInventory"
+			commandId="eu.chorevolution.studio.eclipse.ui.commands.uploadServiceIntoServiceInventory">
+		</handler>
+	</extension>
+	
+	<!-- Menus -->
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution
+			locationURI="popup:org.eclipse.ui.popup.any">
+			<menu
+         		label="%menus.label">
+         		<command
+					commandId="eu.chorevolution.studio.eclipse.ui.commands.addChorevolutionSyntesisNature"
+					label="%command.addChorevolutionSyntesisNature.label"
+					style="push">
+					<visibleWhen>
+	                  <with variable="selection">
+	                     <reference definitionId="eu.chorevolution.studio.eclipse.ui.expressions.definitions.nonChorevolutionProject"/>
+	                  </with>
+	            	</visibleWhen>
+				</command>
+				<command
+					commandId="eu.chorevolution.studio.eclipse.ui.commands.removeChorevolutionSyntesisNature"
+					label="%command.removeChorevolutionSyntesisNature.label"
+					style="push">
+					<visibleWhen>
+	                  <with variable="selection">
+	                     <reference definitionId="eu.chorevolution.studio.eclipse.ui.expressions.definitions.chorevolutionSyntesisProject"/>
+	                  </with>
+	            	</visibleWhen>
+				</command>
+				<command
+					commandId="eu.chorevolution.studio.eclipse.ui.commands.downloadChoreographyFromSyncope"
+					label="%command.downloadChoreographyFromSyncope.label"
+					style="push">
+					<visibleWhen>
+	                  <with variable="selection">
+	                     <reference definitionId="eu.chorevolution.studio.eclipse.ui.expressions.definitions.chorevolutionSyntesisProject"/>
+	                  </with>
+	            	</visibleWhen>
+				</command>				
+				<command
+					commandId="eu.chorevolution.studio.eclipse.ui.commands.addChorevolutionServiceThingNature"
+					label="%command.addChorevolutionServiceThingNature.label"
+					style="push">
+					<visibleWhen>
+	                  <with variable="selection">
+	                     <reference definitionId="eu.chorevolution.studio.eclipse.ui.expressions.definitions.nonChorevolutionProject"/>
+	                  </with>
+	            	</visibleWhen>
+				</command>
+				<command
+					commandId="eu.chorevolution.studio.eclipse.ui.commands.removeChorevolutionServiceThingNature"
+					label="%command.removeChorevolutionServiceThingNature.label"
+					style="push">
+					<visibleWhen>
+	                  <with variable="selection">
+	                     <reference definitionId="eu.chorevolution.studio.eclipse.ui.expressions.definitions.chorevolutionServiceThingProject"/>
+	                  </with>
+	            	</visibleWhen>
+				</command>
+				<command
+					commandId="eu.chorevolution.studio.eclipse.ui.commands.validateBpmnChoreographyDiagram"
+					label="%command.validateBpmnChoreographyDiagram.label"
+					style="push">
+					<visibleWhen>
+	                  <with variable="selection">
+	                     <reference definitionId="eu.chorevolution.studio.eclipse.ui.expressions.definitions.bpmnFile"/>
+	                  </with>
+	            	</visibleWhen>
+				</command>
+				<command
+					commandId="eu.chorevolution.studio.eclipse.ui.commands.executeSynthesisProcessor"
+					label="%command.executeSynthesisProcessor.label"
+					style="push">
+					<visibleWhen>
+	                  <with variable="selection">
+	                     <reference definitionId="eu.chorevolution.studio.eclipse.ui.expressions.definitions.bpmnFile"/>
+	                  </with>
+	            	</visibleWhen>
+				</command>
+				<command
+					commandId="eu.chorevolution.studio.eclipse.ui.commands.generateAdapter"
+					label="%command.generateAdapter.label"
+					style="push">
+					<visibleWhen>
+	                  <with variable="selection">
+	                     <reference definitionId="eu.chorevolution.studio.eclipse.ui.expressions.definitions.adapterFile"/>
+	                  </with>
+	            	</visibleWhen>
+				</command>
+				<command
+					commandId="eu.chorevolution.studio.eclipse.ui.commands.generateChoreographySpecificationFromChorarch"
+					label="%command.generateChoreographySpecificationFromChorarch.label"
+					style="push">
+					<visibleWhen>
+	                  <with variable="selection">
+	                     <reference definitionId="eu.chorevolution.studio.eclipse.ui.expressions.definitions.chorarchFile"/>
+	                  </with>
+	            	</visibleWhen>
+				</command>
+				<command
+					commandId="eu.chorevolution.studio.eclipse.ui.commands.deployAndEnactChoreographyDeploymentDescriptor"
+					label="%command.deployAndEnactChoreographyDeploymentDescriptor.label"
+					style="push">
+					<visibleWhen>
+	                  <with variable="selection">
+	                     <reference definitionId="eu.chorevolution.studio.eclipse.ui.expressions.definitions.choreospecFile"/>
+	                  </with>
+	            	</visibleWhen>
+				</command>
+				<!--
+				<command
+					commandId="eu.chorevolution.studio.eclipse.ui.commands.enactChoreographyDeploymentDescriptor"
+					label="%command.enactChoreographyDeploymentDescriptor.label"
+					style="push">
+					<visibleWhen>
+	                  <with variable="selection">
+	                     <reference definitionId="eu.chorevolution.studio.eclipse.ui.expressions.definitions.choreospecFileUploaded"/>
+	                  </with>
+	            	</visibleWhen>
+				</command>
+				<command
+					commandId="eu.chorevolution.studio.eclipse.ui.commands.updateChoreographyDeploymentDescriptor"
+					label="%command.updateChoreographyDeploymentDescriptor.label"
+					style="push">
+					<visibleWhen>
+	                  <with variable="selection">
+	                     <reference definitionId="eu.chorevolution.studio.eclipse.ui.expressions.definitions.choreospecFileUploaded"/>
+	                  </with>
+	            	</visibleWhen>
+				</command>
+				-->								
+				<command
+					commandId="eu.chorevolution.studio.eclipse.ui.commands.uploadServiceIntoServiceInventory"
+					label="%command.uploadServiceIntoServiceInventory.label"
+					style="push">
+					<visibleWhen>
+	                  <with variable="selection">
+	                     <reference definitionId="eu.chorevolution.studio.eclipse.ui.expressions.definitions.servicethingFile"/>
+	                  </with>
+	            	</visibleWhen>
+				</command>
+			</menu>
+		</menuContribution>
+	</extension>
+
+<!-- END Chorevolution org.eclipse.ui.menus -->
+<!-- TODO Synthesis Processor Steps 
+<extension point="org.eclipse.ui.views">
+   <category id="eu.chorevolution.studio.eclipse.ui.views.chorevolution" 
+   		name="%perspective.label" />
+   <view id="eu.chorevolution.studio.eclipse.ui.views.synthesisprocessor"
+   		category="eu.chorevolution.studio.eclipse.ui.views.chorevolution"
+   		class="eu.chorevolution.studio.eclipse.ui.views.ChorevolutionSynthesisProcessorViewPart"
+   		icon="icons/full/obj16/chorevolution_perspective.gif"
+   		name="%view.synthesisprocessor.label"
+   		restorable="true" />
+</extension>
+-->
+
+
+<!-- START Chorevolution org.eclipse.ui.editors -->
+	<extension point="org.eclipse.ui.editors">
+		<editor
+			id="eu.chorevolution.studio.eclipse.ui.editor.ChoreoArchGraphicalSiriusEditor"
+			name = "%command.openGraphicalEditor.label"
+			extensions = "chorarch,security,iplts"
+			icon = "icons/full/obj16/sirius_icon.png"
+			launcher="eu.chorevolution.studio.eclipse.ui.editor.OpenGraphicalSiriusEditor"
+			default="true">
+		</editor>
+	
+   </extension>
+   <!-- START Chorevolution org.eclipse.ui.editors -->
+   
+</plugin>

@@ -1,0 +1,27 @@
+Get Public Transportation Info:0:0:getMetadataInArea:0:0
+latestPTRequest:1:0:inputMessageTypeRoot:1:0
+latestPTRequest:3:0:inputMessageTypeRoot:3:0
+-:-
+latestPTResponse:2:0:outputMessageTypeRoot:2:0
+latestPTResponse:4:0:outputMessageTypeRoot:4:0
+publicTransportNews:NewsType:0:outputDataType:outputDataType:0
+name:string:0:t:string:0
+description:string:0:c:string:0
+startDate:dateTime:0:start:string:0~parseDate(outputDataType.start, "'/Date('S'+0100)/'")
+endDate:dateTime:0:start:string:0~parseDate(outputDataType.start, "'/Date('S'+0100)/'")
+$lat:double:0~"44.47"
+$lon:double:0~"9.08"
+
+
+
+
+
+
+
+
+
+
+
+
+
+

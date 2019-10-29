@@ -1,0 +1,16 @@
+Get Poi List:0:0:pws:0:0
+poiRequest:1:0:inputMessageTypeRoot:1:0
+poiRequest:3:0:inputMessageTypeRoot:3:0
+upperRightLat:double:0:urLat:double:0
+upperRightLon:double:0:urLon:double:0
+lowerLeftLat:double:0:llLat:double:0
+lowerLeftLon:double:0:llLon:double:0
+type:int:0:type:integer:0
+-:-
+poiResponse:2:0:outputMessageTypeRoot:2:0
+poiResponse:4:0:outputMessageTypeRoot:4:0
+pois:PoiType:0:objs:objs:0
+name:string:0:n:string:0
+description:string:0:ds:string:0
+lat:double:0:y:double:0
+lon:double:0:x:double:0

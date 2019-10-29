@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2015 The CHOReVOLUTION project
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<feature
+      id="eu.chorevolution.studio.eclipse.feature"
+      label="%featureName"
+      version="2.2.0.qualifier"
+      provider-name="%providerName">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseUrl">
+      %license
+   </license>
+
+   <includes
+         id="eu.chorevolution.modelingnotations.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="eu.chorevolution.studio.eclipse.branding.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="eu.chorevolution.studio.eclipse.core.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="eu.chorevolution.studio.eclipse.ui.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="eu.chorevolution.studio.eclipse.wizard.feature"
+         version="0.0.0"/>
+
+   <requires>
+      <import feature="org.eclipse.jst.web_ui.feature" version="0.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.m2e.feature" version="0.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.m2e.logback.feature" version="0.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.sirius.doc.feature" version="0.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.sirius.runtime.ide.ui.acceleo" version="0.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.sirius.runtime.ide.eef" version="0.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.sirius.runtime.ide.xtext" version="0.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.sirius.runtime.acceleo" version="0.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.sirius.runtime.ocl" version="0.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.sirius.samples" version="0.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.sirius.specifier.ide.ui.acceleo" version="0.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.sirius.specifier.ide.ui.aql" version="0.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.sirius.specifier.ide.ui" version="0.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.bpmn2.modeler" version="0.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.bpmn2.modeler.examples" version="0.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.bpmn2.modeler.runtime.jboss" version="0.0.0" match="greaterOrEqual"/>
+   </requires>
+
+</feature>

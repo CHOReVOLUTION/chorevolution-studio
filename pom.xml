@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2015 The CHOReVOLUTION project
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>eu.chorevolution.studio.eclipse</groupId>
+    <artifactId>eu.chorevolution.studio.eclipse.parent</artifactId>
+    <version>2.2.0-SNAPSHOT</version>
+
+    <name>CHOReVOLUTION Studio Parent</name>
+
+    <packaging>pom</packaging>
+
+    <prerequisites>
+        <maven>3.0</maven>
+    </prerequisites>
+
+    <organization>
+        <name>The CHOReVOLUTION project</name>
+        <url>http://www.chorevolution.eu</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <properties>
+        <tycho-version>1.1.0</tycho-version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- eclipse version m2e is built against -->
+        <eclipse.stream>oxygen</eclipse.stream>
+        <sirius.version>5.1.1</sirius.version>
+        <eclipse-bpmn2.version>1.4.2</eclipse-bpmn2.version>
+        
+		<eclipse.url>http://download.eclipse.org/releases/${eclipse.stream}/</eclipse.url>
+
+        <m2eclipse.url>http://download.eclipse.org/technology/m2e/releases/</m2eclipse.url>
+        <eclipse-bpmn2.url>http://download.eclipse.org/bpmn2-modeler/updates/${eclipse.stream}/${eclipse-bpmn2.version}/</eclipse-bpmn2.url>
+        <sirius.url>http://download.eclipse.org/sirius/updates/releases/${sirius.version}/${eclipse.stream}/</sirius.url>
+		<bpel.url>https://download.eclipse.org/bpel/site/1.0.5</bpel.url>
+		
+        <chorevolution-modeling-notations.url>http://nexus.disim.univaq.it/content/sites/chorevolution-modeling-notations/</chorevolution-modeling-notations.url>
+    </properties>
+
+    <distributionManagement>
+      <repository>
+         <id>ow2-nexus-releases</id>
+         <name>OW2 Release Repository</name>
+         <url>http://repository.ow2.org/nexus/service/local/staging/deploy/maven2/</url>
+      </repository>
+       <snapshotRepository>
+          <id>ow2-nexus-snapshots</id>
+          <name>OW2 Snapshots Repository</name>
+          <url>http://repository.ow2.org/nexus/content/repositories/snapshots/</url>
+       </snapshotRepository>
+    </distributionManagement>
+
+    <repositories>
+        <!-- configure p2 repository to resolve against -->
+        <repository>
+            <id>eclipse</id>
+            <layout>p2</layout>
+            <url>${eclipse.url}</url>
+        </repository>
+
+        <repository>
+            <id>m2eclipse</id>
+            <layout>p2</layout>
+            <url>${m2eclipse.url}</url>
+        </repository>
+
+        <repository>
+            <id>eclipse-bpmn2</id>
+            <url>${eclipse-bpmn2.url}</url>
+            <layout>p2</layout>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+
+        <repository>
+            <id>sirius</id>
+            <layout>p2</layout>
+            <url>${sirius.url}</url>
+        </repository>
+
+		<repository>
+            <id>bpel</id>
+            <layout>p2</layout>
+            <url>${bpel.url}</url>
+        </repository>
+		
+
+        <!-- chorevolution modeling notations p2 repository -->
+        <repository>
+            <id>chorevolution-modeling-notations</id>
+            <layout>p2</layout>
+            <url>${chorevolution-modeling-notations.url}</url>
+        </repository>
+    </repositories>
+
+    <!-- the modules that shall be built together in one reactor -->
+    <modules>
+        <!-- Build Extra -->
+        <!-- <module>extra/eu.chorevolution.studio.eclipse.core.configurator</module> -->
+
+        <!-- Build plugins -->
+        <module>plugins/eu.chorevolution.studio.eclipse.core</module>
+        <module>plugins/eu.chorevolution.studio.eclipse.ui</module>
+        <module>plugins/eu.chorevolution.studio.eclipse.wizard</module>
+        <module>plugins/eu.chorevolution.studio.eclipse.branding</module>
+
+        <!-- Build features -->
+        <module>features/eu.chorevolution.studio.eclipse.core.feature</module>
+        <module>features/eu.chorevolution.studio.eclipse.ui.feature</module>
+        <module>features/eu.chorevolution.studio.eclipse.wizard.feature</module>
+        <module>features/eu.chorevolution.studio.eclipse.branding.feature</module>
+        <module>features/eu.chorevolution.studio.eclipse.feature</module>
+        <!-- Build site -->
+        <module>releng/eu.chorevolution.studio.eclipse.site</module>
+    </modules>
+
+    <profiles>
+        <!-- launch the command mvn clean verify -Pbuild-ide -->
+        <profile>
+            <id>build-ide</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+
+            <modules>
+                <module>releng/eu.chorevolution.studio.eclipse.product</module>
+            </modules>
+
+            <build>
+            	<defaultGoal>clean verify</defaultGoal>
+                
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-site-plugin</artifactId>
+                        <version>3.2</version>
+                        <configuration>
+                            <locales>en</locales>
+                            <reportPlugins>
+                                <plugin>
+                                    <groupId>org.apache.maven.plugins</groupId>
+                                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                                    <version>2.4</version>
+                                    <!-- -->
+                                    <reports>
+                                        <report>index</report>
+                                        <report>project-team</report>
+                                        <report>license</report>
+                                        <report>dependencies</report>
+                                        <report>dependency-convergence</report>
+                                        <report>plugin-management</report>
+                                        <report>cim</report>
+                                        <report>issue-tracking</report>
+                                        <report>scm</report>
+                                        <report>summary</report>
+                                    </reports>
+                                </plugin>
+                            </reportPlugins>
+                        </configuration>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <!-- enable the Tycho build extension -->
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>tycho-maven-plugin</artifactId>
+                <version>${tycho-version}</version>
+                <extensions>true</extensions>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>tycho-p2-repository-plugin</artifactId>
+                <version>${tycho-version}</version>
+                <configuration>
+                    <includeAllDependencies>true</includeAllDependencies>
+                </configuration>
+            </plugin>
+            <!-- specify all environments when building the IDE -->
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>target-platform-configuration</artifactId>
+                <version>${tycho-version}</version>
+                <configuration>
+                    <!-- <pomDependencies>consider</pomDependencies> -->
+                    <environments>
+						<!--
+						<environment>
+                            <os>linux</os>
+                            <ws>gtk</ws>
+                            <arch>x86</arch>
+                        </environment>
+                        <environment>
+                            <os>linux</os>
+                            <ws>gtk</ws>
+                            <arch>x86_64</arch>
+                        </environment>
+                        <environment>
+                            <os>macosx</os>
+                            <ws>cocoa</ws>
+                            <arch>x86_64</arch>
+                        </environment>
+                        <environment>
+                            <os>win32</os>
+                            <ws>win32</ws>
+                            <arch>x86</arch>
+                        </environment>
+						-->
+                        <environment>
+                            <os>win32</os>
+                            <ws>win32</ws>
+                            <arch>x86_64</arch>
+                        </environment>
+                    </environments>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
