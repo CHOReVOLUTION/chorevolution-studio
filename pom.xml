@@ -221,7 +221,6 @@ limitations under the License.
                 <configuration>
                     <!-- <pomDependencies>consider</pomDependencies> -->
                     <environments>
-						<!--
 						<environment>
                             <os>linux</os>
                             <ws>gtk</ws>
@@ -242,7 +241,6 @@ limitations under the License.
                             <ws>win32</ws>
                             <arch>x86</arch>
                         </environment>
-						-->
                         <environment>
                             <os>win32</os>
                             <ws>win32</ws>
