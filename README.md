@@ -30,8 +30,9 @@ Setting the Environment
 4) Run `mvn clean verify` from the parent pom
 
 5) Open the eclipse and import the following maven projects
-	-
-	-
+	- eu.chorevolution.studio.eclipse.core
+	- eu.chorevolution.studio.eclipse.ui
+	- eu.chorevolution.studio.eclipse.wizard
 	
 
 6) Create a `Run Configuration` in order to run the CHOReVOLUTION Studio
