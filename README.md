@@ -12,7 +12,7 @@
 * [Apache Maven 3.3.3+](https://maven.apache.org/install.html)
 * [Java 8+](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
-##eclipseIDE
+## Eclipse IDE
 Setting the Environment
 
 1) Download Eclipse Modeling Tools (Oxygen version) https://eclipse.org/downloads/
