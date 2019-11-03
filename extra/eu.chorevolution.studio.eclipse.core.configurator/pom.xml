@@ -32,16 +32,101 @@ limitations under the License.
 
     <packaging>pom</packaging>
 
-    <properties>
+
+    <!-- chorevolution repository -->
+
+    <repositories>
+     
+		<repository>
+			<id>disim-nexus-releases</id>
+			<url>http://nexus.disim.univaq.it/content/repositories/releases/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>	
+		<repository>
+			<id>disim-nexus-3rd-party</id>
+			<url>http://nexus.disim.univaq.it/content/repositories/thirdparty/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>		
+		<repository>
+			<id>disim-nexus-snapshots</id>
+			<url>http://nexus.disim.univaq.it/content/repositories/snapshots/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>ow2-releases</id>
+			<url>http://repository.ow2.org/nexus/content/repositories/releases/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+    <!-- these dependencies are copied into the plugin plugins/eu.chorevolution.studio.eclipse.core folder-->
+    <dependencies>
+	    <dependency>
+            <groupId>eu.chorevolution.modelingnotations</groupId>
+            <artifactId>eu.chorevolution.modelingnotations.adapter</artifactId>
+            <version>${eu.chorevolution.modelingnotations.adapter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.chorevolution.transformations.generativeapproach</groupId>
+            <artifactId>choreographyarchitecture-generator</artifactId>
+            <version>${choreographyarchitecture-generator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.chorevolution.transformations.generativeapproach</groupId>
+            <artifactId>choreographyspecification-generator</artifactId>
+            <version>${choreographyspecification-generator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.chorevolution.synthesisprocessor</groupId>
+            <artifactId>synthesisprocessor-rest</artifactId>
+            <version>${synthesisprocessor-rest.version}</version>
+            <classifier>api</classifier>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.syncope.client</groupId>
+            <artifactId>syncope-client-lib</artifactId>
+            <version>${syncope.version}</version>
+        </dependency>
+      <dependency>
+         <groupId>eu.chorevolution.idm.ext.choreography</groupId>
+         <artifactId>syncope-ext-choreography-rest-api</artifactId>
+         <version>${syncope-ext-choreography.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.commons</groupId>
+         <artifactId>commons-jexl3</artifactId>
+         <version>${commons-jexl3.version}</version>
+      </dependency>     
+    </dependencies>
+
+	<properties>
         <all.java.dependencies.target-folder>${project.build.directory}/all-java-dependencies</all.java.dependencies.target-folder>
         <extracted.java.dependencies.target-folder>${project.basedir}/../../plugins/eu.chorevolution.studio.eclipse.core/libs</extracted.java.dependencies.target-folder>
         <extracted.build.properties.target-folder>${project.basedir}/../../plugins/eu.chorevolution.studio.eclipse.core</extracted.build.properties.target-folder>
         <extracted.manifest.mf.target-folder>${project.basedir}/../../plugins/eu.chorevolution.studio.eclipse.core/META-INF</extracted.manifest.mf.target-folder>
 
-		<eu.chorevolution.modelingnotations.adapter.version>2.2.0-SNAPSHOT</eu.chorevolution.modelingnotations.adapter.version>
-        <choreographyarchitecture-generator.version>2.2.0-SNAPSHOT</choreographyarchitecture-generator.version>
-        <choreographyspecification-generator.version>2.2.0-SNAPSHOT</choreographyspecification-generator.version>
-        <chorspec.version>1.0.0</chorspec.version>
         <commons-codec.version>1.10</commons-codec.version>
         <commons-collections.version>4.1</commons-collections.version>
         <commons-compress.version>1.12</commons-compress.version>
@@ -61,9 +146,6 @@ limitations under the License.
 		<slf4j-ext.version>1.7.12</slf4j-ext.version>
         <slf4j-log4j12.version>1.7.12</slf4j-log4j12.version>
         <stax2-api.version>3.1.4</stax2-api.version>
-        <syncope.version>2.0.3</syncope.version>
-        <syncope-ext-choreography.version>2.1.0</syncope-ext-choreography.version>
-        <synthesisprocessor-rest.version>2.2.0-SNAPSHOT</synthesisprocessor-rest.version>
         <validation-api.version>1.1.0.Final</validation-api.version>
         <woodstox-core-asl.version>4.4.1</woodstox-core-asl.version>
         <wsdl4j.version>1.6.3</wsdl4j.version>
@@ -71,6 +153,15 @@ limitations under the License.
         <xmlschema-core.version>2.2.1</xmlschema-core.version>
         <xerces-impl.version>2.11.0</xerces-impl.version>
         <commons-jexl3.version>3.1</commons-jexl3.version>
+
+		<eu.chorevolution.modelingnotations.adapter.version>2.2.0</eu.chorevolution.modelingnotations.adapter.version>
+        <choreographyarchitecture-generator.version>2.2.0-SNAPSHOT</choreographyarchitecture-generator.version>
+        <choreographyspecification-generator.version>2.2.0-SNAPSHOT</choreographyspecification-generator.version>
+        <chorspec.version>1.0.0</chorspec.version>
+        <syncope.version>2.0.3</syncope.version>
+        <syncope-ext-choreography.version>2.1.0</syncope-ext-choreography.version>
+        <synthesisprocessor-rest.version>2.2.0-SNAPSHOT</synthesisprocessor-rest.version>
+
 
 		<eu.chorevolution.modelingnotations.adapter>eu.chorevolution.modelingnotations.adapter-${eu.chorevolution.modelingnotations.adapter.version}.jar</eu.chorevolution.modelingnotations.adapter>
 		<choreographyarchitecture-generator>choreographyarchitecture-generator-${choreographyarchitecture-generator.version}.jar</choreographyarchitecture-generator>
@@ -156,8 +247,6 @@ limitations under the License.
             libs/${javax.ws.rs-api},\
             libs/${jaxb-core},\
             libs/${jaxb-impl},\
-            libs/${jersey-client},\
-            libs/${jersey-core},\
             libs/${jlibs-core},\
             libs/${jlibs-xml},\
             libs/${jlibs-xsd},\
@@ -183,89 +272,9 @@ limitations under the License.
             libs/${xerces-impl},\
             libs/${commons-jexl3}
 
-# libs/${authzforce-ce-xacml-model},\
-# libs/${authzforce-ce-xmlns-model},\  
         </bin.includes>
         
     </properties>
-    
-    <!-- chorevolution repository -->
-    <repositories>
-        <repository>
-         <id>ow2-snapshots</id>
-         <url>http://repository.ow2.org/nexus/content/repositories/snapshots/</url>
-         <releases>
-            <enabled>false</enabled>
-         </releases>
-         <snapshots>
-            <enabled>true</enabled>
-         </snapshots>
-      </repository>
-      <repository>
-         <id>ow2-releases</id>
-         <url>http://repository.ow2.org/nexus/content/repositories/releases/</url>
-         <releases>
-            <enabled>true</enabled>
-         </releases>
-         <snapshots>
-            <enabled>false</enabled>
-         </snapshots>
-      </repository>
-        <repository>
-         <id>apache.snapshots</id>
-         <name>Apache Snapshot Repository</name>
-         <url>http://repository.apache.org/snapshots</url>
-         <releases>
-            <enabled>false</enabled>
-         </releases>
-      </repository>
-    </repositories>
-
-    <!-- this dependencies will be copyied in the plugin plugins/eu.chorevolution.studio.eclipse.core -->
-    <dependencies>
-	    <dependency>
-            <groupId>eu.chorevolution.modelingnotations</groupId>
-            <artifactId>eu.chorevolution.modelingnotations.adapter</artifactId>
-            <version>${eu.chorevolution.modelingnotations.adapter.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>eu.chorevolution.transformations.generativeapproach</groupId>
-            <artifactId>choreographyarchitecture-generator</artifactId>
-            <version>${choreographyarchitecture-generator.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>eu.chorevolution.transformations.generativeapproach</groupId>
-            <artifactId>choreographyspecification-generator</artifactId>
-            <version>${choreographyspecification-generator.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>eu.chorevolution.synthesisprocessor</groupId>
-            <artifactId>synthesisprocessor-rest</artifactId>
-            <version>${synthesisprocessor-rest.version}</version>
-            <classifier>api</classifier>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>${commons-io.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.syncope.client</groupId>
-            <artifactId>syncope-client-lib</artifactId>
-            <version>${syncope.version}</version>
-        </dependency>
-      <dependency>
-         <groupId>eu.chorevolution.idm.ext.choreography</groupId>
-         <artifactId>syncope-ext-choreography-rest-api</artifactId>
-         <version>${syncope-ext-choreography.version}</version>
-      </dependency>
-      <dependency>
-         <groupId>org.apache.commons</groupId>
-         <artifactId>commons-jexl3</artifactId>
-         <version>${commons-jexl3.version}</version>
-      </dependency>     
-    </dependencies>
-
     <build>
         <plugins>
             <!-- remove the libs/ folder in the plugin: plugins/eu.chorevolution.studio.eclipse.core -->
