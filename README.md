@@ -4,7 +4,7 @@
 # Table Of Contents
 * [Developing](#developing)
    * [Requirements](#requirements)
-   * [Eclipse IDE](#eclipseIDE)
+   * [Eclipse IDE](#eclipse-IDE)
    * [Building](#building)
 
 ## Requirements
