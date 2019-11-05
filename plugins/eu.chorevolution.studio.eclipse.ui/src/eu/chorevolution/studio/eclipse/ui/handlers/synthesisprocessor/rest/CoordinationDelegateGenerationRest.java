@@ -168,7 +168,8 @@ public class CoordinationDelegateGenerationRest extends CoordinationDelegateGene
 					coordinationDelegateFolder);
 			IProject openProject = ChorevolutionCoreUtils
 					.openBPELProject(coordinationDelegateProsumerResponse.getName());
-			location = openProject.getLocation().makeAbsolute().toOSString();
+			
+			//location = openProject.getLocation().makeAbsolute().toOSString();
 		}
 		ComponentData prosumerComponentData = generatedArtifactSynthesisProcessor.addProsumerComponent(
 				participantTableViewerRecord.getParticipant(), participantTableViewerRecord.getServiceProjectName(),
@@ -248,7 +249,7 @@ public class CoordinationDelegateGenerationRest extends CoordinationDelegateGene
 		if (srcGenerationType) {
 			ChorevolutionCoreUtils.unTar(response.getCoordinationDelegateContent(), coordinationDelegateFolder);
 			IProject openProject = ChorevolutionCoreUtils.openBPELProject(response.getName());
-			location = openProject.getLocation().makeAbsolute().toOSString();
+			// location = openProject.getLocation().makeAbsolute().toOSString();
 		}
 
 		generatedArtifactSynthesisProcessor.addClientComponent(participantTableViewerRecord.getParticipant(),

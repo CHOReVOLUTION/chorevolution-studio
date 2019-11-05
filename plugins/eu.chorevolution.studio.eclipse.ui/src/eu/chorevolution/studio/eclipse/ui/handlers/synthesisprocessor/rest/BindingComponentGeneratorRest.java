@@ -313,6 +313,7 @@ public class BindingComponentGeneratorRest extends BindingComponentGenerator {
 		if (bcGenerationType == BindingComponentGeneratorRequest.BC_GENERATION_TYPE_SRC) {
 			String projectName = ChorevolutionCoreUtils.unTar(response.getBindingComponentContent(),
 					ChorevolutionUIPlugin.getWorkspace().getRoot().getLocation());
+			System.out.println("amleto=" + projectName);
 			IProject importedProject = ChorevolutionCoreUtils.importMavenProject(projectName);
 
 			location = importedProject.getLocation().makeAbsolute().toOSString();

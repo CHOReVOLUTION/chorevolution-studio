@@ -69,18 +69,13 @@ public class ChorevolutionSynthesisProcessor extends AbstractHandler {
 	private IProject project;
 	private ChorevolutionSynthesisProcessorWizard generateServiceRoleBindingsWizard;
 	private String choreographyName;
-	private ChoreographyValidatorRest choreographyValdiator;
+	private ChoreographyValidatorRest choreographyValidator;
 
 	private List<WSDLData> wsdlData;
 	private GeneratedArtifactSynthesisProcessor generatedArtifactSynthesisProcessor;
 
 	@Override
 	public Object execute(ExecutionEvent event) {
-
-		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		IStructuredSelection selection = (IStructuredSelection) window.getSelectionService().getSelection();
-
-		Iterator iterator = selection.iterator();
 
 		this.project = null;
 		this.bpmnFile = null;
@@ -89,6 +84,9 @@ public class ChorevolutionSynthesisProcessor extends AbstractHandler {
 
 		// get Services folder root. The while iterate in only one element
 		// (services folder)
+		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		IStructuredSelection selection = (IStructuredSelection) window.getSelectionService().getSelection();
+		Iterator iterator = selection.iterator();
 		while (iterator.hasNext()) {
 			// get service folder
 			bpmnFile = (IFile) iterator.next();
@@ -167,18 +165,18 @@ public class ChorevolutionSynthesisProcessor extends AbstractHandler {
 					subMonitor.worked(1);
 
 					// validate bpmn2 choreography
-					choreographyValdiator = new ChoreographyValidatorRest(project, choreographyName,
+					choreographyValidator = new ChoreographyValidatorRest(project, choreographyName,
 							FileUtils.readFileToByteArray(bpmnFile.getRawLocation().makeAbsolute().toFile()),
 							typesXSDByteArray);
 
 					// TODO manage the response
-					if (!choreographyValdiator.validateBpmn2ChoreographyDiagram()) {
+					if (!choreographyValidator.validateBpmn2ChoreographyDiagram()) {
 						Display.getDefault().asyncExec(new Runnable() {
 							public void run() {
 								MessageDialog.openError(ChorevolutionUIPlugin.getActiveWorkbenchShell(),
 										ChorevolutionUIMessages.Validation_Information,
 										NLS.bind(ChorevolutionUIMessages.Vaidation_bpmnChoreographyDiagramError,
-												bpmnFile.getName(), choreographyValdiator.getErrors()));
+												bpmnFile.getName(), choreographyValidator.getErrors()));
 							}
 						});
 						return Status.CANCEL_STATUS;
@@ -312,7 +310,6 @@ public class ChorevolutionSynthesisProcessor extends AbstractHandler {
 				// TODO remove this when you add the bindingComponent
 				// subMonitor.worked(1);
 				// store binding components
-
 				List<WSDLData> bindingData = null;
 
 				try {
@@ -404,7 +401,6 @@ public class ChorevolutionSynthesisProcessor extends AbstractHandler {
 						return Status.CANCEL_STATUS;
 					}
 				}
-
 				// store coordination delegate
 				try {
 					CoordinationDelegateGenerationRest coordinationDelegateGeneration = new CoordinationDelegateGenerationRest(
@@ -438,9 +434,7 @@ public class ChorevolutionSynthesisProcessor extends AbstractHandler {
 				try {
 					ChoreographyArchitectureGeneratorRest choreographyArchitectureGenerator = new ChoreographyArchitectureGeneratorRest(
 							generatedArtifactSynthesisProcessor, bpmnFile, project, subMonitor.split(1));
-
 					choreographyArchitectureGenerator.storeChoreographyArchitecture();
-
 				} catch (Exception e) {
 					Display.getDefault().asyncExec(new Runnable() {
 						public void run() {

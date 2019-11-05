@@ -24,7 +24,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -38,10 +37,8 @@ import org.eclipse.ui.PlatformUI;
 import eu.chorevolution.studio.eclipse.core.ChorevolutionCorePlugin;
 import eu.chorevolution.studio.eclipse.core.ChorevolutionCorePreferences;
 import eu.chorevolution.studio.eclipse.core.internal.project.ChorevolutionProjectUtils;
-import eu.chorevolution.studio.eclipse.core.internal.project.ChorevolutionSynthesisProjectNature;
 import eu.chorevolution.studio.eclipse.ui.ChorevolutionUIMessages;
 import eu.chorevolution.studio.eclipse.ui.ChorevolutionUIPlugin;
-import eu.chorevolution.studio.eclipse.ui.handlers.synthesisprocessor.ChoreographyDeploymentDescriptorGenerator;
 import eu.chorevolution.studio.eclipse.ui.handlers.synthesisprocessor.rest.ChoreographyDeploymentDescriptorGeneratorRest;
 import eu.chorevolution.studio.eclipse.ui.handlers.synthesisprocessor.rest.SynthesisProcessorAccessControlRest;
 import eu.chorevolution.studio.eclipse.ui.handlers.wizard.ChoreographyDeploymentDescriptorJDKWizard;
@@ -51,14 +48,12 @@ public class GenerateChoreographyDeploymentDescriptor extends AbstractHandler {
 	private WizardDialog jRESelectorDialog;
 	private boolean execCorrect;
 
-
 	@Override
 	public Object execute(ExecutionEvent event) {
 		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		IStructuredSelection selection = (IStructuredSelection) window.getSelectionService().getSelection();
 
 		Iterator iterator = selection.iterator();
-		
 		while (iterator.hasNext()) {
 			IFile file = (IFile) iterator.next();
 			if (ChorevolutionProjectUtils.isChorevolutionProject(file)) {
@@ -67,7 +62,6 @@ public class GenerateChoreographyDeploymentDescriptor extends AbstractHandler {
 					executeChoreographyDeploymentDescriptorGenerator(file);
 				}
 			}
-
 		}
 
 		return null;
@@ -81,79 +75,77 @@ public class GenerateChoreographyDeploymentDescriptor extends AbstractHandler {
 				if (monitor.isCanceled()) {
 					return Status.CANCEL_STATUS;
 				}
-				//SubMonitor subMonitor = SubMonitor.convert(monitor, 1);
-					
+				// SubMonitor subMonitor = SubMonitor.convert(monitor, 1);
+
 				do {
 					try {
 						String choreographyName = choreographyArchitectureFile.getProject().getName();
-						ChorevolutionCorePreferences prefs = ChorevolutionCorePreferences.getProjectOrWorkspacePreferences(
-								choreographyArchitectureFile.getProject(), ChorevolutionCorePlugin.PLUGIN_ID);
+						ChorevolutionCorePreferences prefs = ChorevolutionCorePreferences
+								.getProjectOrWorkspacePreferences(choreographyArchitectureFile.getProject(),
+										ChorevolutionCorePlugin.PLUGIN_ID);
 
-						ChoreographyDeploymentDescriptorGeneratorRest choreographyDeploymentDescriptorGenerator = null;
-							
-						SynthesisProcessorAccessControlRest spacr= new SynthesisProcessorAccessControlRest(choreographyArchitectureFile.getProject());
-						
+						SynthesisProcessorAccessControlRest spacr = new SynthesisProcessorAccessControlRest(
+								choreographyArchitectureFile.getProject());						
 						try {
-							if(!spacr.executeLogin()) {
+							if (!spacr.executeLogin()) {
 								MessageDialog.openError(ChorevolutionUIPlugin.getActiveWorkbenchShell(),
 										"Login incorrect",
 										"The username or the password of the Synthesis Processor are incorrect");
-								return null;			
+								return null;
 							}
 						} catch (Exception e) {
 							MessageDialog.openError(ChorevolutionUIPlugin.getActiveWorkbenchShell(),
-									"Unable to do Login",
-									e.toString());
+									"Unable to do Login", e.toString());
 						}
-						
-						choreographyDeploymentDescriptorGenerator = new ChoreographyDeploymentDescriptorGeneratorRest(
+
+						ChoreographyDeploymentDescriptorGeneratorRest choreographyDeploymentDescriptorGenerator = new ChoreographyDeploymentDescriptorGeneratorRest(
 								choreographyName, choreographyArchitectureFile.getProject(),
 								choreographyArchitectureFile, monitor);
 
 						execCorrect = true;
-						choreographyDeploymentDescriptorGenerator.storeChoreographyDeploymentDescriptor();	
-					}
-					catch (Exception e) {
-						//if is not selected a JDK
-						if( (e instanceof CoreException) && (((CoreException) e).getStatus().getMessage().equals("not_a_JDK")) ) {
+						choreographyDeploymentDescriptorGenerator.storeChoreographyDeploymentDescriptor();
+					} catch (Exception e) {
+						// if is not selected a JDK
+						if ((e instanceof CoreException)
+								&& (((CoreException) e).getStatus().getMessage().equals("not_a_JDK"))) {
 							Display.getDefault().syncExec(new Runnable() {
 								public void run() {
-									jRESelectorDialog = new WizardDialog(ChorevolutionUIPlugin.getActiveWorkbenchShell(), new ChoreographyDeploymentDescriptorJDKWizard());
+									jRESelectorDialog = new WizardDialog(
+											ChorevolutionUIPlugin.getActiveWorkbenchShell(),
+											new ChoreographyDeploymentDescriptorJDKWizard());
 									jRESelectorDialog.open();
-									execCorrect=false;
+									execCorrect = false;
 								}
 							});
-							
+
 						} else {
 							Display.getDefault().asyncExec(new Runnable() {
 								public void run() {
 									MessageDialog.openError(ChorevolutionUIPlugin.getActiveWorkbenchShell(),
 											ChorevolutionUIMessages.TransformatorORGeneator_Error,
 											NLS.bind(ChorevolutionUIMessages.Transformator_chorarch2choreospecError,
-												choreographyArchitectureFile.getName(), e.getMessage()));
+													choreographyArchitectureFile.getName(), e.getMessage()));
 								}
 							});
-	
-							ChorevolutionUIPlugin.log(NLS.bind(ChorevolutionUIMessages.Transformator_chorarch2choreospecError,
-									choreographyArchitectureFile.getName(), e.getMessage()), e);
+
+							ChorevolutionUIPlugin
+									.log(NLS.bind(ChorevolutionUIMessages.Transformator_chorarch2choreospecError,
+											choreographyArchitectureFile.getName(), e.getMessage()), e);
 							monitor.setCanceled(true);
-							
+
 						}
-							
 
 					} finally {
 						if (monitor.isCanceled()) {
 							return Status.CANCEL_STATUS;
 						}
 					}
-				} while((!execCorrect)&&(jRESelectorDialog.getReturnCode()==0));
+				} while ((!execCorrect) && (jRESelectorDialog.getReturnCode() == 0));
 				return Status.OK_STATUS;
 			}
 		};
 		executeSynthesisProcessor.setUser(true);
 		executeSynthesisProcessor.schedule();
 	}
-	
-	
 
 }

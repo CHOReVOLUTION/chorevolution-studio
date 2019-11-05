@@ -24,10 +24,11 @@ import eu.chorevolution.studio.eclipse.core.preferences.ChorevolutionServicesURI
 import eu.chorevolution.studio.eclipse.core.preferences.ChorevolutionSynthesisSourceModelPrefs;
 
 public abstract class ChoreographyDeploymentDescriptorGenerator {
+	
 	public static final String CHOREOGRAPHY_DEPLOYMENT_DESCRIPTION_FILE_EXTENSION = "xml";
 	private IProject project;
 	
-	Map<String, ChorevolutionPreferenceData> propertyValues;
+	private Map<String, ChorevolutionPreferenceData> propertyValues;
 
 	public ChoreographyDeploymentDescriptorGenerator(IProject project) {
 		this.project = project;
@@ -35,6 +36,7 @@ public abstract class ChoreographyDeploymentDescriptorGenerator {
 		ChorevolutionSynthesisSourceModelPrefs chorevolutionSynthesisSourceModelPrefs = new ChorevolutionSynthesisSourceModelPrefs();
 		propertyValues = chorevolutionSynthesisSourceModelPrefs.readProjectOrWorkspacePreferences(project);
 		propertyValues.putAll((new ChorevolutionServicesURIPrefs()).readProjectOrWorkspacePreferences(project));
+				
 	}
 
 	public abstract void storeChoreographyDeploymentDescriptor()
