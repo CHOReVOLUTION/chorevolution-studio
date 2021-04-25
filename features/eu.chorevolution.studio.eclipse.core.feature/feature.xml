@@ -17,7 +17,7 @@ limitations under the License.
 <feature
       id="eu.chorevolution.studio.eclipse.core.feature"
       label="%featureName"
-      version="2.2.0"
+      version="2.3.0"
       provider-name="%providerName"
       plugin="eu.chorevolution.studio.eclipse.core">
 

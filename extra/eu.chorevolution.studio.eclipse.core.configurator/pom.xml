@@ -22,7 +22,7 @@ limitations under the License.
     <parent>
         <groupId>eu.chorevolution.studio.eclipse</groupId>
         <artifactId>eu.chorevolution.studio.eclipse.parent</artifactId>
-        <version>2.2.0</version>
+        <version>2.3.0</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
@@ -154,13 +154,13 @@ limitations under the License.
         <xerces-impl.version>2.11.0</xerces-impl.version>
         <commons-jexl3.version>3.1</commons-jexl3.version>
 
-		<eu.chorevolution.modelingnotations.adapter.version>2.2.0</eu.chorevolution.modelingnotations.adapter.version>
-        <choreographyarchitecture-generator.version>2.2.0</choreographyarchitecture-generator.version>
-        <choreographyspecification-generator.version>2.2.0</choreographyspecification-generator.version>
+		<eu.chorevolution.modelingnotations.adapter.version>2.3.0</eu.chorevolution.modelingnotations.adapter.version>
+        <choreographyarchitecture-generator.version>2.3.0</choreographyarchitecture-generator.version>
+        <choreographyspecification-generator.version>2.3.0</choreographyspecification-generator.version>
         <chorspec.version>1.0.0</chorspec.version>
         <syncope.version>2.0.3</syncope.version>
         <syncope-ext-choreography.version>2.1.0</syncope-ext-choreography.version>
-        <synthesisprocessor-rest.version>2.2.0</synthesisprocessor-rest.version>
+        <synthesisprocessor-rest.version>2.3.0</synthesisprocessor-rest.version>
 
 
 		<eu.chorevolution.modelingnotations.adapter>eu.chorevolution.modelingnotations.adapter-${eu.chorevolution.modelingnotations.adapter.version}.jar</eu.chorevolution.modelingnotations.adapter>

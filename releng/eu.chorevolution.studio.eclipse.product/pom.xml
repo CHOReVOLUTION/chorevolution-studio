@@ -22,7 +22,7 @@ limitations under the License.
   <parent>
     <groupId>eu.chorevolution.studio.eclipse</groupId>
     <artifactId>eu.chorevolution.studio.eclipse.parent</artifactId>
-    <version>2.2.0</version>
+    <version>2.3.0</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
