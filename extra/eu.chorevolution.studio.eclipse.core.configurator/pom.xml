@@ -118,7 +118,7 @@ limitations under the License.
          <groupId>org.apache.commons</groupId>
          <artifactId>commons-jexl3</artifactId>
          <version>${commons-jexl3.version}</version>
-      </dependency>     
+      </dependency>           
     </dependencies>
 
 	<properties>
@@ -152,7 +152,7 @@ limitations under the License.
         <xml-apis.version>1.4.01</xml-apis.version>
         <xmlschema-core.version>2.2.1</xmlschema-core.version>
         <xerces-impl.version>2.11.0</xerces-impl.version>
-        <commons-jexl3.version>3.1</commons-jexl3.version>
+        <commons-jexl3.version>3.1</commons-jexl3.version>              
 
 		<eu.chorevolution.modelingnotations.adapter.version>2.3.0</eu.chorevolution.modelingnotations.adapter.version>
         <choreographyarchitecture-generator.version>2.3.0</choreographyarchitecture-generator.version>
@@ -212,8 +212,7 @@ limitations under the License.
         <xml-apis>xml-apis-${xml-apis.version}.jar</xml-apis>
         <xmlschema-core>xmlschema-core-${xmlschema-core.version}.jar</xmlschema-core>
         <xerces-impl>xercesImpl-${xerces-impl.version}.jar</xerces-impl>
-        <commons-jexl3>commons-jexl3-${commons-jexl3.version}.jar</commons-jexl3>
-        
+        <commons-jexl3>commons-jexl3-${commons-jexl3.version}.jar</commons-jexl3>        
         <!-- properties for build.properties file -->
         <sources.dir>src/</sources.dir>
         <bin.includes>META-INF/,\
@@ -271,7 +270,6 @@ limitations under the License.
             libs/${xmlschema-core},\
             libs/${xerces-impl},\
             libs/${commons-jexl3}
-
         </bin.includes>
         
     </properties>
